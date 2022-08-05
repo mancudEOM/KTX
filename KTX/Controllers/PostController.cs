@@ -13,32 +13,7 @@ public class PostController : Controller
     {
         _context = context;
     }
-    //public IActionResult Index()
-    //{
-    //    var model = _context.ListPosts.ToList();
-    //    return View(model);
-    //}
-    //public IActionResult Index1()
-    //{
-    //    var model = _context.Posts.ToList();
-    //    return View(model);
-    //}
-    //public IActionResult Index2()
-    //{
-    //    var model = _context.Posts.ToList();
-    //    return View(model);
-    //}
-    //public IActionResult Create()
-    //{
-    //    return View();
-    //}
-    //[HttpPost]
-    //public IActionResult Create(Post post)
-    //{
-    //    _context.Posts.Add(post);
-    //    _context.SaveChanges();
-    //    return Ok("Add post thành công");
-    //}
+   
     public IActionResult Index()
     {
         var listofData = _context.Posts.ToList();

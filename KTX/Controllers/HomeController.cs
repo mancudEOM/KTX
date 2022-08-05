@@ -2,21 +2,31 @@
 using KTX.Models;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace KTX.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly KtxDbContext _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(KtxDbContext logger)
         {
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var listofData = _logger.Posts.ToList();
+            return View(listofData);
         }
+        public IActionResult Index2()
+        {
+            return View();
+        } 
+       
+        
+
+
 
         public IActionResult Privacy()
         {

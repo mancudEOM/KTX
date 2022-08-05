@@ -35,12 +35,36 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/User/source/repos/KTX/KTX/Views/Home/Index2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/User/source/repos/KTX/KTX/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/User/source/repos/KTX/KTX/Views/ListRents/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFJlbnRzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/source/repos/KTX/KTX/Views/ListRooms/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFJvb21zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/source/repos/KTX/KTX/Views/ListRooms/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFJvb21zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/source/repos/KTX/KTX/Views/ListRooms/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFJvb21zXERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/source/repos/KTX/KTX/Views/ListRooms/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFJvb21zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/source/repos/KTX/KTX/Views/ListRooms/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFJvb21zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/User/source/repos/KTX/KTX/Views/ListUsers/Create.cshtml]
