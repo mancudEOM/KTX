@@ -35,7 +35,7 @@ public class AccountController : Controller
 
             else
             {
-                ViewBag.error = "!!Please Enter valid login credentials.";
+                ViewBag.error = "!!Tên đăng nhập hoặc mật khẩu không chính xác";
             }
             db.SaveChanges();
         }

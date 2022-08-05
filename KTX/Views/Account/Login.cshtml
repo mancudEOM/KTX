@@ -19,22 +19,30 @@
 
 <div class="container login-container">
     <div class="row">
-        
-        <div class="col-md-6 login-form">
+        <div class="col-md-5 ">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="d-block w-100 h-100 " alt="Sample image">
+        </div>
+        <div class="col-md-7 login-form">
             <span style="color:red">@ViewBag.error</span>
-            <h4>User Login Form</h4>
+            <h4> Đăng nhập tài khoản</h4>
             <form asp-action="Login">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <!-- Email input -->
                 <div class="form-group">
-                    <input type="text" asp-for="Email" class="form-control" placeholder="Your Email *" value="" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <label class="form-label" >Email</label>
+                    <input type="text" asp-for="Email" class="form-control" placeholder="Your Email *" value=""  />
+                    <span asp-validation-for="Email" class="text-danger"></span>                    
                 </div>
+                <!-- Password input -->
                 <div class="form-group">
+                    <label class="form-label">Mật khẩu</label>
                     <input type="password" asp-for="Password" class="form-control" placeholder="Your Password *" value="" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <span asp-validation-for="Password" class="text-danger"></span>                    
                 </div>
+                <!-- Login Button -->
                 <div class="form-group">
-                    <input type="submit" class="btnSubmit" value="Login" />
+                    <input type="submit" class="btnSubmit" value="Đăng nhập" />
                 </div>
                 <div class="form-group">
                     <a href="#" class="ForgetPsd">Forget Password?</a>
@@ -43,6 +51,7 @@
         </div>
     </div>
 </div>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
@@ -89,6 +98,7 @@
         font-weight: 600;
         text-decoration: none;
     }
+
 </style>
 
 
