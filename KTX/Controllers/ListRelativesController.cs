@@ -15,7 +15,7 @@ public class ListRelativesController : Controller
     }
     public IActionResult Index()
     {
-        var model = _context.Rents.ToList();
+        var model = _context.RelativeUsers.ToList();
         return View(model);
     }
 }

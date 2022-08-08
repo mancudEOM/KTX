@@ -13,9 +13,20 @@
                 <h6 class="fw-light"> 
                     <i class="bi bi-calendar3"></i> 
                     @Html.DisplayFor(modelItem => item.DatePost)</h6>                
-                <p>@Html.DisplayFor(modelItem => item.Content)</p>
-                <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+                <p class="text" >@Html.DisplayFor(modelItem => item.Content)</p>                
+                <p><a class="btn btn-secondary" asp-action="Detail" asp-route-id="@item.Id">Đọc thêm</a></p>                
             </div><!-- /.col-lg-4 -->
             }
                 
 </div>
+
+<style>
+    .text {
+       overflow: hidden;
+       text-overflow: ellipsis;
+       display: -webkit-box;
+       -webkit-line-clamp: 2; /* number of lines to show */
+       -webkit-box-orient: vertical;
+    }
+
+</style>

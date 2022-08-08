@@ -60,5 +60,6 @@ namespace KTX.Models
         public DbSet<Post>? Posts { get; set; } = null!;
         public DbSet<ListPost>? ListPosts { get; set; } = null!;
         public DbSet<Admin> Admins { get; set; } = null!;
+        public DbSet<Manager> Managers { get; set; } = null!;
     }
 }

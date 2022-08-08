@@ -14,34 +14,7 @@ public class ListUsersController : Controller
     {
         _context = context;
     }
-    //public IActionResult Index()
-    //{
-    //    var model = _context.Users.ToList();
-    //    return View(model);
-    //}
-    //public IActionResult Create()
-    //{
-    //    return View();
-    //}
-    //[HttpPost]
-    //public IActionResult Create(User user)
-    //{
-    //    _context.Users.Add(user);
-    //    _context.SaveChanges();
-    //    return Ok("Add user thành công");
-    //}
-    //public IActionResult Details(int id)
-    //{
-    //    var model = _context.Users.Where(i => i.Id == id).Include(x => x.RelativeUsers).FirstOrDefault();
-    //    return View(model);
-    //}
-    //public IActionResult Delete(int id)
-    //{
-    //    var user = _context.Users.Where(i => i.Id == id).FirstOrDefault();
-    //    _context.Users.Remove(user);
-    //    _context.SaveChanges();
-    //    return Ok("Delete user thành công");
-    //}
+    
     public IActionResult Index()
     {
         var listofData = _context.Users.ToList();
@@ -91,6 +64,14 @@ public class ListUsersController : Controller
         var data = _context.Users.Where(x => x.Id == id).Include(x => x.RelativeUsers).FirstOrDefault();
         return View(data);
     }
+    public IActionResult Detail2(int id)
+    {
+        var data = _context.HistoryRents.Where(x => x.UserId == id).Include(y => y.Rents).FirstOrDefault();
+        return View(data);
+    }
+  
+    
+
     //public IActionResult Details(int id)
     //{
     //    var model = _context.Users.Where(i => i.Id == id).Include(x => x.RelativeUsers).FirstOrDefault();
@@ -104,6 +85,7 @@ public class ListUsersController : Controller
         ViewBag.Messsage = "Record Delete Successfully";
         return RedirectToAction("index");
     }
+    
 
 
 }

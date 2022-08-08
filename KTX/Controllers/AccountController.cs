@@ -13,10 +13,15 @@ public class AccountController : Controller
         
         db = context;
     }
+    //public IActionResult Index()
+    //{
+
+    //    return View();
+    //}
     public IActionResult Index()
     {
-
-        return View();
+        var listofData = db.Users.ToList();
+        return View(listofData);
     }
     public IActionResult Login()
     {
@@ -45,6 +50,60 @@ public class AccountController : Controller
         }
         return View();
     }
+    [HttpGet]
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Create(User model)
+    {
+        db.Users.Add(model);
+        db.SaveChanges();
+        ViewBag.Message = "Data Insert Successfully";
+        return View();
+    }
+    [HttpGet]
+    public IActionResult Edit(int id)
+    {
+        var data = db.Users.Where(x => x.Id == id).FirstOrDefault();
+        return View(data);
+    }
+    [HttpPost]
+    public IActionResult Edit(User Model)
+    {
+        var data = db.Users.Where(x => x.Id == Model.Id).FirstOrDefault();
+        if (data != null)
+        {
+            data.IdentityId = Model.IdentityId;
+            data.BirthDay = Model.BirthDay;
+            data.Fullname = Model.Fullname;
+            data.Address = Model.Address;
+            data.ImageUrl = Model.ImageUrl;
+            data.Gender = Model.Gender;
+            data.TelephoneNumber = Model.TelephoneNumber;
+            data.Email = Model.Email;
+            db.SaveChanges();
+        }
+
+        return RedirectToAction("index");
+    }
+    public IActionResult Detail(int id)
+    {
+        var data = db.Users.Where(x => x.Id == id).Include(x => x.RelativeUsers).FirstOrDefault();
+        return View(data);
+    }
+    
+    public IActionResult Delete(int id)
+    {
+        var data = db.Users.Where(x => x.Id == id).FirstOrDefault();
+        db.Users.Remove(data);
+        db.SaveChanges();
+        ViewBag.Messsage = "Record Delete Successfully";
+        return RedirectToAction("index");
+    }
+   
 
     public IActionResult Registration()
     {

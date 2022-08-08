@@ -7,58 +7,63 @@
     Layout="_Layout1";
 }
 
-<h1>Detail</h1>
+<h1>Thông tin sinh viên</h1>
+
 
 <div>
-    <h4>User</h4>
+    <h4>@Html.DisplayFor(model => model.Fullname)</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdentityId)
+        <dt class = "col-sm-12 text-center">
+                    Thông tin cá nhân
         </dt>
-        <dd class = "col-sm-10">
+
+        <dt class = "col-sm-4">
+            CMND
+        </dt>
+        <dd class = "col-sm-8">
             @Html.DisplayFor(model => model.IdentityId)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BirthDay)
+        <dt class = "col-sm-4">
+            Ngày sinh
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-8">
             @Html.DisplayFor(model => model.BirthDay)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fullname)
+        <dt class = "col-sm-4">
+            Họ và tên
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-8">
             @Html.DisplayFor(model => model.Fullname)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
+        <dt class = "col-sm-4">
+            Địa chỉ
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-8">
             @Html.DisplayFor(model => model.Address)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-4">
             @Html.DisplayNameFor(model => model.ImageUrl)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-8">
             @Html.DisplayFor(model => model.ImageUrl)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Gender)
+        <dt class = "col-sm-4">
+            Giới tính
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-8">
             @Html.DisplayFor(model => model.Gender)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TelephoneNumber)
+        <dt class = "col-sm-4">
+            Số điện thoại
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-8">
             @Html.DisplayFor(model => model.TelephoneNumber)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-4">
             @Html.DisplayNameFor(model => model.Email)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-8">
             @Html.DisplayFor(model => model.Email)
         </dd>
         @if(Model.RelativeUsers != null && Model.RelativeUsers.Count>0)
@@ -67,23 +72,31 @@
             foreach(var relativeuser in Model.RelativeUsers)
             {
                 i++;
-                <dt class = "col-sm-2">
+                <dt class = "col-sm-12 text-center">
                     Người thân @(i) 
                 </dt>
-                <dd class = "col-sm-10">
+                <dd class = "col-sm-4">
+                    Họ và tên
+                </dd>
+                <dd class = "col-sm-8">
+                    @(relativeuser.Fullname)
+                </dd>
+                <dd class = "col-sm-4">
+                    Số điện thoại
+                </dd>
+                <dd class = "col-sm-8">
                     @(relativeuser.TelephoneNumber)
                 </dd>
-                <dd class = "col-sm-15">
-                    (<a asp-action="Details" asp-route-id="@Model.RelativeUsers">Details</a>)
-                </dd>
+                
             }
          <dd class = "col-sm-15">
-                    (<a asp-action="Details" asp-route-id="@Model.RelativeUsers">Details</a>)
-         </dd>   
+                    (<a asp-area="" asp-controller="ListRelatives" asp-action="Index" asp-route-id="@Model.RelativeUsers">Danh sách người thân</a>)
+         </dd>
+            
         }
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    
+    <a asp-action="Index">Quay lại</a>
 </div>

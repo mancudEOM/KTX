@@ -1,14 +1,14 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<KTX.Models.User>
+
 @{
+    ViewData["Title"] = "Index";
 }
+
 @{
-    Layout = "_Layout1";
+    Layout="_Layout1";
 }
-<h1>
-    nam
-</h1>
+
+
 
 <div class="container-fluid">
     <div class="row flex-nowrap">
@@ -18,7 +18,7 @@
                     <span class="fs-5 d-none d-sm-inline">Menu</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    <li class="nav-item">
+                    @*<li class="nav-item">
                         <a href="#" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
                         </a>
@@ -26,7 +26,7 @@
                     <li>
                         <a href="ListUsers" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
-                    </li>
+                    </li>*@
                     <li class="nav-item">
                             <a class="nav-link px-0 " asp-area="" asp-controller="ListUsers" asp-action="Index">Danh sách sinh viên</a>
                     </li>                        
@@ -40,14 +40,111 @@
                
             </div>
         </div>
-        <div class="col py-3">
-            <h3>Left Sidebar with Submenus</h3>
-            <p class="lead">
-                An example 2-level sidebar with collasible menu items. The menu functions like an "accordion" where only a single 
-                menu is be open at a time. While the sidebar itself is not toggle-able, it does responsively shrink in width on smaller screens.</p>
-            <ul class="list-unstyled">
-                <li><h5>Responsive</h5> shrinks in width, hides text labels and collapses to icons only on mobile</li>
-            </ul>
+        <div class="col py-3">            
+            <div class ="container p-2">
+                <div class= "row pt-4"> 
+                    <div class="col-6">
+                        <h2 class="text-primary"> 
+                            Danh sách Sinh Viên
+                        </h2>
+                    </div>
+                    <div class="col-6 text-end">
+                        <a asp-action="Create" class="btn btn-primary">
+                         <i class="bi bi-plus-circle-fill"></i>  Tạo mới
+                        </a>
+
+                    </div>
+
+                </div>
+    
+            </div>
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            CMND
+                        </th>
+                        <th>
+                            Ngày sinh
+                        </th>
+                        <th>
+                            Họ và tên
+                        </th>
+                        <th>
+                            Địa chỉ
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ImageUrl)
+                        </th>
+                        <th>
+                            Giới tính
+                        </th>
+                        <th>
+                            Số điện thoại
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                           Edit
+                        </th>
+                        <th>
+                           Detail
+                        </th>
+                        <th>
+                           Delete
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+            @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdentityId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BirthDay)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fullname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ImageUrl)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TelephoneNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">
+                                <i class="bi bi-pencil-square"></i></a>                            
+                        </td>
+                        <td>                            
+                            <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary"> 
+                                <i class="bi bi-info-circle-fill"></i></a>                             
+                        </td>
+                        <td>                           
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">
+                               <i class="bi bi-x-circle-fill"></i>  </a>
+                        </td>
+                        
+                    </tr>
+            }
+                </tbody>
+            </table>
+
+            
         </div>
     </div>
 </div>
+

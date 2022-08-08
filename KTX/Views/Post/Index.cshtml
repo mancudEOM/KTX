@@ -15,7 +15,7 @@
                     <span class="fs-5 d-none d-sm-inline">Menu</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    <li class="nav-item">
+                    @*<li class="nav-item">
                         <a href="#" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
                         </a>
@@ -23,7 +23,7 @@
                     <li>
                         <a href="ListUsers" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
-                    </li>
+                    </li>*@
                     <li class="nav-item">
                             <a class="nav-link px-0 " asp-area="" asp-controller="ListUsers" asp-action="Index">Danh sách sinh viên</a>
                     </li>                        
@@ -38,11 +38,22 @@
             </div>
         </div>
         <div class="col py-3">
-            <h3>Left Sidebar with Submenus</h3>
             
-            <p>
-                <a asp-action="Create">Create New</a>
-            </p>
+            <div class ="container p-2">
+                <div class= "row pt-4"> 
+                    <div class="col-6">
+                        <h2 class="text-primary"> 
+                            Danh sách bài đăng
+                        </h2>
+                    </div>
+                    <div class="col-6 text-end">
+                        <a asp-action="Create" class="btn btn-primary">
+                         <i class="bi bi-plus-circle-fill"></i>  Tạo mới
+                        </a>
+                    </div>
+                </div>    
+            </div>
+            
             <table class="table">
                 <thead>
                     <tr>
@@ -55,6 +66,14 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Content)
                         </th>
+                        <th>
+                           Edit
+                        </th>
+                        <th>
+                           Detail
+                        </th>
+                        <th>
+                           Del
                         <th></th>
                     </tr>
                 </thead>
@@ -71,9 +90,16 @@
                             @Html.DisplayFor(modelItem => item.Content)
                         </td>
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action="Detail" asp-route-id="@item.Id">Detail</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">
+                                <i class="bi bi-pencil-square"></i></a>                            
+                        </td>
+                        <td>                            
+                            <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary"> 
+                                <i class="bi bi-info-circle-fill"></i></a>                             
+                        </td>
+                        <td>                           
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">
+                               <i class="bi bi-x-circle-fill"></i>  </a>
                         </td>
                     </tr>
             }

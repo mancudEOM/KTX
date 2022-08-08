@@ -22,12 +22,12 @@ namespace KTX.Controllers
         public IActionResult Index2()
         {
             return View();
-        } 
-       
-        
-
-
-
+        }
+        public IActionResult Detail(int id)
+        {
+            var data = _logger.Posts.Where(x => x.Id == id).FirstOrDefault();
+            return View(data);
+        }
         public IActionResult Privacy()
         {
             return View();
