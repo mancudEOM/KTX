@@ -6,34 +6,68 @@
 @{
     Layout="_Layout1";
 }
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="#" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline">Menu</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    
+                    <li class="nav-item">
+                            <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index">Danh sách sinh viên</a>
+                    </li>
+                    @*<li class="nav-item">
+                            <a class="nav-link px-0 " asp-area="" asp-controller="ListUsers" asp-action="Index">Danh sách sinh viên</a>
+                    </li>  *@                      
+                    <li class="nav-item">
+                            <a class="nav-link px-0" asp-area="" asp-controller="Post" asp-action="Index">Danh sách bài đăng</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link px-0" asp-area="" asp-controller="ListRooms" asp-action="Index">Danh sách phòng</a>
+                    </li>
+                    
+                    @*<li class="nav-item">
+                            <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index4">DDD2</a>
+                    </li>*@
+                    
+                </ul>
+               
+            </div>
+        </div>
+        <div class="col py-3"> 
 
-<h1>Detail</h1>
+            <h1>Detail</h1>
 
-<div>
-    <h4>Post</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DatePost)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DatePost)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+            <div>
+                <h4>Post</h4>
+                <hr />
+                <dl class="row">
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.DatePost)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.DatePost)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.Title)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Title)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.Content)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Content)
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+                <a asp-action="Index">Trở về</a>
+            </div>
+        </div>
+    </div>
 </div>

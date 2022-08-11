@@ -40,7 +40,7 @@ namespace KTX.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Admins");
+                    b.ToTable("Admins", (string)null);
                 });
 
             modelBuilder.Entity("KTX.Models.Bill", b =>
@@ -82,7 +82,7 @@ namespace KTX.Migrations
 
                     b.HasIndex("HistoryBillId");
 
-                    b.ToTable("Bills");
+                    b.ToTable("Bills", (string)null);
                 });
 
             modelBuilder.Entity("KTX.Models.HistoryBill", b =>
@@ -101,7 +101,7 @@ namespace KTX.Migrations
                     b.HasIndex("RoomId")
                         .IsUnique();
 
-                    b.ToTable("HistoryBills");
+                    b.ToTable("HistoryBills", (string)null);
                 });
 
             modelBuilder.Entity("KTX.Models.HistoryRent", b =>
@@ -120,7 +120,7 @@ namespace KTX.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("HistoryRents");
+                    b.ToTable("HistoryRents", (string)null);
                 });
 
             modelBuilder.Entity("KTX.Models.ListPost", b =>
@@ -133,7 +133,7 @@ namespace KTX.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ListPosts");
+                    b.ToTable("ListPosts", (string)null);
                 });
 
             modelBuilder.Entity("KTX.Models.Manager", b =>
@@ -158,7 +158,7 @@ namespace KTX.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Managers");
+                    b.ToTable("Managers", (string)null);
                 });
 
             modelBuilder.Entity("KTX.Models.Post", b =>
@@ -185,7 +185,7 @@ namespace KTX.Migrations
 
                     b.HasIndex("ListPostId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("KTX.Models.RelativeUser", b =>
@@ -215,7 +215,7 @@ namespace KTX.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RelativeUsers");
+                    b.ToTable("RelativeUsers", (string)null);
                 });
 
             modelBuilder.Entity("KTX.Models.Rent", b =>
@@ -242,7 +242,7 @@ namespace KTX.Migrations
 
                     b.HasIndex("HistoryRentId");
 
-                    b.ToTable("Rents");
+                    b.ToTable("Rents", (string)null);
                 });
 
             modelBuilder.Entity("KTX.Models.Room", b =>
@@ -264,7 +264,7 @@ namespace KTX.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Rooms");
+                    b.ToTable("Rooms", (string)null);
                 });
 
             modelBuilder.Entity("KTX.Models.User", b =>
@@ -306,7 +306,7 @@ namespace KTX.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("KTX.Models.Bill", b =>

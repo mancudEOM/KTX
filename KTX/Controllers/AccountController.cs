@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using KTX.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace KTX.Controllers;
 
@@ -18,10 +19,49 @@ public class AccountController : Controller
 
     //    return View();
     //}
-    public IActionResult Index()
+    public IActionResult Index4()
     {
         var listofData = db.Users.ToList();
         return View(listofData);
+    }
+    public async Task<IActionResult> Index1(string searchString)
+    {
+        var listofData = from m in db.Users
+                         select m;
+
+        if (!String.IsNullOrEmpty(searchString))
+        {
+            listofData = listofData.Where(s => s.IdentityId!.Contains(searchString));
+        }
+
+        return View(await listofData.ToListAsync());
+    }
+
+    public IActionResult Index(string userEmail, string searchString)
+    {
+        var EmailLst = new List<string>();
+
+        var EmailQry = from d in db.Users
+                       orderby d.Email
+                       select d.Email;
+
+        EmailLst.AddRange(EmailQry.Distinct());
+        ViewBag.userEmail = new SelectList(EmailLst);
+
+        var data = from m in db.Users
+                   select m;
+
+        if (!String.IsNullOrEmpty(searchString))
+        {
+            data = data.Where(s => s.IdentityId!.Contains(searchString));
+        }
+
+        if (!string.IsNullOrEmpty(userEmail))
+        {
+            data = data.Where(x => x.Email == userEmail);
+        }
+
+        return View(data);
     }
     public IActionResult Login()
     {
@@ -62,7 +102,8 @@ public class AccountController : Controller
         db.Users.Add(model);
         db.SaveChanges();
         ViewBag.Message = "Data Insert Successfully";
-        return View();
+        //return View();
+        return RedirectToAction("index");
     }
     [HttpGet]
     public IActionResult Edit(int id)
@@ -94,7 +135,13 @@ public class AccountController : Controller
         var data = db.Users.Where(x => x.Id == id).Include(x => x.RelativeUsers).FirstOrDefault();
         return View(data);
     }
-    
+    public IActionResult DetailRent(int id)
+    {
+        var data = db.HistoryRents.Where(x => x.UserId == id).Include(y => y.Rents).FirstOrDefault();
+        return View(data);
+    }
+
+
     public IActionResult Delete(int id)
     {
         var data = db.Users.Where(x => x.Id == id).FirstOrDefault();

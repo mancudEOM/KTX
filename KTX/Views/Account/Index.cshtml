@@ -1,13 +1,12 @@
 ﻿@model IEnumerable<KTX.Models.User>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index1";
+    int i = 0;
 }
-
 @{
-    Layout="_Layout1";
+   Layout="_Layout1";
 }
-
 
 
 <div class="container-fluid">
@@ -18,29 +17,39 @@
                     <span class="fs-5 d-none d-sm-inline">Menu</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    @*<li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0">
-                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
-                        </a>
-                    </li>                                       
-                    <li>
-                        <a href="ListUsers" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
-                    </li>*@
+                    
                     <li class="nav-item">
+                            <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index">Danh sách sinh viên</a>
+                    </li>
+                    @*<li class="nav-item">
                             <a class="nav-link px-0 " asp-area="" asp-controller="ListUsers" asp-action="Index">Danh sách sinh viên</a>
-                    </li>                        
+                    </li>  *@                      
                     <li class="nav-item">
                             <a class="nav-link px-0" asp-area="" asp-controller="Post" asp-action="Index">Danh sách bài đăng</a>
                     </li>
                     <li class="nav-item">
                             <a class="nav-link px-0" asp-area="" asp-controller="ListRooms" asp-action="Index">Danh sách phòng</a>
                     </li>
+                    
+                    @*<li class="nav-item">
+                            <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index4">DDD2</a>
+                    </li>*@
+                    
                 </ul>
                
             </div>
         </div>
-        <div class="col py-3">            
+        <div class="col py-3"> 
+
+             <div class ="container p-2">               
+                    @using (Html.BeginForm("Index", "Account", FormMethod.Get)){
+                    <p>
+                        Email: @Html.DropDownList("userEmail", "All")
+                        CMND: @Html.TextBox("SearchString")
+                        <input type="submit" value="Tìm kiếm" />
+                    </p>}
+            </div>
+      
             <div class ="container p-2">
                 <div class= "row pt-4"> 
                     <div class="col-6">
@@ -58,25 +67,19 @@
                 </div>
     
             </div>
-            
-            <table class="table">
-                <thead>
+
+            <table class="table table-sm ">
+                <thead class="table-bordered">
                     <tr>
                         <th>
-                            CMND
-                        </th>
+                            #
+                        </th> 
                         <th>
-                            Ngày sinh
-                        </th>
+                            CMND
+                        </th>                        
                         <th>
                             Họ và tên
-                        </th>
-                        <th>
-                            Địa chỉ
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ImageUrl)
-                        </th>
+                        </th>                        
                         <th>
                             Giới tính
                         </th>
@@ -95,27 +98,23 @@
                         <th>
                            Delete
                         </th>
-                        <th></th>
+                        @*<th></th>*@
                     </tr>
                 </thead>
                 <tbody>
+            
             @foreach (var item in Model) {
-                    <tr>
+                i++;
+                    <tr>                        
+                        <td>
+                            @(i)
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.IdentityId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.BirthDay)
-                        </td>
+                        </td>                        
                         <td>
                             @Html.DisplayFor(modelItem => item.Fullname)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Address)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ImageUrl)
-                        </td>
+                        </td>                        
                         <td>
                             @Html.DisplayFor(modelItem => item.Gender)
                         </td>
@@ -133,6 +132,10 @@
                             <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary"> 
                                 <i class="bi bi-info-circle-fill"></i></a>                             
                         </td>
+                        @*<td>                            
+                            <a asp-action="DetailRent" asp-route-id="@item.Id" class="btn btn-primary"> 
+                                <i class="bi bi-info-circle-fill"></i></a>                             
+                        </td>*@
                         <td>                           
                             <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">
                                <i class="bi bi-x-circle-fill"></i>  </a>
@@ -142,8 +145,6 @@
             }
                 </tbody>
             </table>
-
-            
         </div>
     </div>
 </div>
