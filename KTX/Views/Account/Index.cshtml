@@ -1,11 +1,10 @@
-﻿@model IEnumerable<KTX.Models.User>
+﻿@model PaginatedList<KTX.Models.User>
 
 @{
-    ViewData["Title"] = "Index1";
-    int i = 0;
+    ViewData["Title"] = "Index";
 }
 @{
-   Layout="_Layout1";
+    Layout="_Layout1";
 }
 
 
@@ -31,25 +30,18 @@
                             <a class="nav-link px-0" asp-area="" asp-controller="ListRooms" asp-action="Index">Danh sách phòng</a>
                     </li>
                     
-                    @*<li class="nav-item">
-                            <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index4">DDD2</a>
-                    </li>*@
+                    <li class="nav-item">
+                            <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index5">DDD2</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index1">E</a>
+                    </li>
                     
                 </ul>
                
             </div>
         </div>
         <div class="col py-3"> 
-
-             <div class ="container p-2">               
-                    @using (Html.BeginForm("Index", "Account", FormMethod.Get)){
-                    <p>
-                        Email: @Html.DropDownList("userEmail", "All")
-                        CMND: @Html.TextBox("SearchString")
-                        <input type="submit" value="Tìm kiếm" />
-                    </p>}
-            </div>
-      
             <div class ="container p-2">
                 <div class= "row pt-4"> 
                     <div class="col-6">
@@ -67,85 +59,130 @@
                 </div>
     
             </div>
-
-            <table class="table table-sm ">
-                <thead class="table-bordered">
-                    <tr>
-                        <th>
-                            #
-                        </th> 
-                        <th>
-                            CMND
-                        </th>                        
-                        <th>
-                            Họ và tên
-                        </th>                        
-                        <th>
-                            Giới tính
-                        </th>
-                        <th>
-                            Số điện thoại
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Email)
-                        </th>
-                        <th>
-                           Edit
-                        </th>
-                        <th>
-                           Detail
-                        </th>
-                        <th>
-                           Delete
-                        </th>
-                        @*<th></th>*@
-                    </tr>
-                </thead>
-                <tbody>
-            
-            @foreach (var item in Model) {
-                i++;
-                    <tr>                        
-                        <td>
-                            @(i)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdentityId)
-                        </td>                        
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Fullname)
-                        </td>                        
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Gender)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TelephoneNumber)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Email)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">
+            <div class ="container p-2">
+                <form asp-action="Index" method="get">
+                    <div class="form-actions no-color">
+                        <p>
+                            CMND/Tên : <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                            <input type="submit" value="Tìm kiếm" class="btn btn-primary" /> |
+                            <a asp-action="Index" class="btn btn-primary">Trở về mặc định</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div class ="container p-2">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                               <a asp-action="Index" asp-route-sortOrder="@ViewData["IdenSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">CMND</a>
+                            </th>
+                            @*<th>
+                                Ngày sinh
+                            </th>*@
+                            <th>
+                              <a asp-action="Index" asp-route-sortOrder="@ViewData["FullNameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Họ và tên</a>
+                            </th>
+                            @*<th>
+                                Địa chỉ
+                            </th>
+                            <th>
+                                Hình ảnh
+                            </th>*@
+                            <th>
+                                Giới tính
+                            </th>
+                            <th>
+                                Số điện thoại
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Chỉnh sửa
+                            </th>
+                            <th>
+                               Chi tiết
+                            </th>
+                            <th>
+                               Xóa
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                @foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdentityId)
+                            </td>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.BirthDay)
+                            </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Fullname)
+                            </td>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ImageUrl)
+                            </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Gender)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TelephoneNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">
                                 <i class="bi bi-pencil-square"></i></a>                            
-                        </td>
-                        <td>                            
-                            <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary"> 
-                                <i class="bi bi-info-circle-fill"></i></a>                             
-                        </td>
-                        @*<td>                            
-                            <a asp-action="DetailRent" asp-route-id="@item.Id" class="btn btn-primary"> 
-                                <i class="bi bi-info-circle-fill"></i></a>                             
-                        </td>*@
-                        <td>                           
-                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">
-                               <i class="bi bi-x-circle-fill"></i>  </a>
-                        </td>
-                        
-                    </tr>
+                            </td>
+                            <td>                            
+                                <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary"> 
+                                    <i class="bi bi-info-circle-fill"></i></a>                             
+                            </td>                            
+                            <td>                           
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-primary">
+                                   <i class="bi bi-x-circle-fill"></i>  </a>
+                            </td>
+                        </tr>
+                }
+                    </tbody>
+                </table>
+            </div>
+            @{
+                var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                var nextDisabled = !Model.HasNextPage ? "disabled" : "";
             }
-                </tbody>
-            </table>
+
+            <a asp-action="Index"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-pageNumber="@(Model.PageIndex - 1)"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               class="btn btn-default @prevDisabled">
+                Previous
+            </a>
+            <a asp-action="Index"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-pageNumber="@(Model.PageIndex + 1)"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               class="btn btn-default @nextDisabled">
+                Next
+            </a>
+            <div class="container p-2">
+                <a asp-action="ExportToExcel" asp-controller="Account" class="btn btn-primary">
+                    Export to Excel
+                </a>
+             </div>
+             <div class="container p-2">
+                <a asp-action="BatchUserUpload" asp-controller="Account" class="btn btn-primary">
+                    Import from Excel
+                </a>
+            </div>
         </div>
     </div>
 </div>
-
