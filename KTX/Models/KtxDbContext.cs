@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 namespace KTX.Models
 
 
@@ -50,6 +51,16 @@ namespace KTX.Models
 
         }
 
+        //internal Task<ActionResult> GetPdf(string v, HistoryBill? data)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //internal Task<ActionResult> GetPdf(string v, Bill billobj)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
         public DbSet<User>? Users { get; set; } = null!;
         public DbSet<Room>? Rooms { get; set; } = null!;
         public DbSet<RelativeUser>? RelativeUsers { get; set; } = null!;
@@ -61,6 +72,8 @@ namespace KTX.Models
         public DbSet<ListPost>? ListPosts { get; set; } = null!;
         public DbSet<Admin> Admins { get; set; } = null!;
         public DbSet<Manager> Managers { get; set; } = null!;
+        public DbSet<SignInModel> SignInModels  { get; set; } = null!;
+        public DbSet<ChangePasswordModel> ChangePasswordModels  { get; set; } = null!;
         //public DbSet<Pager> Pagers { get; set; } = null!;
     }
 }

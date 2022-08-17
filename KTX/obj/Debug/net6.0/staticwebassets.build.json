@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gUPgWw/szZBW+RnbP6BVCgjP+QOhUqY0gW5V/eBmAPg=",
+  "Hash": "Ic46Fz13Wfk5bVQy4hAkfSKrvUE2BBVpOsye2Tyez0w=",
   "Source": "KTX",
   "BasePath": "_content/KTX",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\User\\source\\repos\\KTX\\KTX\\wwwroot\\file\\test.pdf",
+      "SourceId": "KTX",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\source\\repos\\KTX\\KTX\\wwwroot\\",
+      "BasePath": "_content/KTX",
+      "RelativePath": "file/test.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\file\\test.pdf"
     },
     {
       "Identity": "C:\\Users\\User\\source\\repos\\KTX\\KTX\\wwwroot\\js\\site.js",

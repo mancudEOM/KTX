@@ -52,6 +52,14 @@
               "target": "Package",
               "version": "[6.4.4, )"
             },
+            "IronPdf": {
+              "target": "Package",
+              "version": "[2022.8.8138, )"
+            },
+            "Microsoft.AspNetCore.Hosting": {
+              "target": "Package",
+              "version": "[2.2.7, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.8, )"
@@ -103,6 +111,14 @@
             "Swashbuckle.AspNetCore.SwaggerUI": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "Syncfusion.HtmlToPdfConverter.Blink.Net.Core.Windows": {
+              "target": "Package",
+              "version": "[20.2.0.44, )"
+            },
+            "Wkhtmltopdf.NetCore": {
+              "target": "Package",
+              "version": "[3.0.2, )"
             }
           },
           "imports": [

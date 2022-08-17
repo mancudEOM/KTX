@@ -15,8 +15,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = C:\Users\User\source\repos\KTX\KTX
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/User/source/repos/KTX/KTX/Views/AccountController1/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudENvbnRyb2xsZXIxXExvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/User/source/repos/KTX/KTX/Views/Account/BatchUserUpload.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxCYXRjaFVzZXJVcGxvYWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/source/repos/KTX/KTX/Views/Account/Changepassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VwYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/User/source/repos/KTX/KTX/Views/Account/Create.cshtml]
@@ -37,6 +45,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/User/source/repos/KTX/KTX/Views/Account/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/source/repos/KTX/KTX/Views/Account/Export.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxFeHBvcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/User/source/repos/KTX/KTX/Views/Account/Index.cshtml]
@@ -103,6 +115,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFJvb21zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/User/source/repos/KTX/KTX/Views/ListRooms/ExportPdf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFJvb21zXEV4cG9ydFBkZi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/User/source/repos/KTX/KTX/Views/ListRooms/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlzdFJvb21zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -145,6 +161,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/User/source/repos/KTX/KTX/Views/Managers/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlcnNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/source/repos/KTX/KTX/Views/Pdf/Bill.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGRmXEJpbGwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/source/repos/KTX/KTX/Views/Pdf/Detail2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGRmXERldGFpbDIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/User/source/repos/KTX/KTX/Views/Post/Create.cshtml]

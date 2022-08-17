@@ -1,15 +1,22 @@
 using Microsoft.EntityFrameworkCore;
 using KTX.Models;
+using Wkhtmltopdf.NetCore;
+//using KTX.Service;
+//using KTX.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<KtxDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("KtxContext")));
+//builder.Services.AddIdentity<KtxDbContext>()
+//                .AddEntityFrameworkStores<KtxDbContext>().AddDefaultTokenProviders();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddWkhtmltopdf("wkhtmltopdf");
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-
+//builder.Services.AddScoped<IUserService, UserService>();
 var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();

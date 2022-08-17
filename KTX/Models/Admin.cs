@@ -18,6 +18,10 @@ namespace KTX.Models
         [Required]
         [DataType(DataType.Password)]
         public string? Password { get; set; }
+        [Required]
+        public string? NewPassword { get; set; }
+        [Required]
+        public string? ComfirmNewPassword { get; set; }
 
     }
 
