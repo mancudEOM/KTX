@@ -306,6 +306,7 @@ public class AccountController : Controller
                 var stream = batchUsers.OpenReadStream();
 
                 List<User> users = new List<User>();
+                List<HistoryRent> users1 = new List<HistoryRent>();
                 //List<User> users = new List<User>();
 
                 try
@@ -325,8 +326,9 @@ public class AccountController : Controller
                                 //var birthday = Convert.ToDateTime.Cells[row, 4].Value?.ToString("dd-MM-yyyy");
                                 var address = worksheet.Cells[row, 4].Value?.ToString();
                                 var telephonenumber = worksheet.Cells[row, 5].Value?.ToString();
-
+                                
                                 var user = new User()
+
                                 {
                                     IdentityId = identityid,
                                     Fullname = fullname,
@@ -335,9 +337,14 @@ public class AccountController : Controller
                                     Address = address,
                                     TelephoneNumber = telephonenumber
                                 };
+                                
+                                
+
 
                                 users.Add(user);
+                                
                                 db.Users.Add(user);
+                                
                                 db.SaveChanges();
                             }
                             catch (Exception ex)

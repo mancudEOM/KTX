@@ -30,12 +30,12 @@
                             <a class="nav-link px-0" asp-area="" asp-controller="ListRooms" asp-action="Index">Danh sách phòng</a>
                     </li>
                     
-                    <li class="nav-item">
+                    @*<li class="nav-item">
                             <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index5">DDD2</a>
                     </li>
                     <li class="nav-item">
                             <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index1">E</a>
-                    </li>
+                    </li>*@
                     
                 </ul>
                
@@ -188,15 +188,15 @@
                     E
                 </a>
             </div>*@
-            <div class="container p-2">
+            @*<div class="container p-2">
                     <form method="post" asp-controller="Account" asp-action="ExportExcel">
                         <input type="hidden" name="ExportData" id="ExportData" />  
                         <input type="submit" id="btnSubmit" value="Export" class="btn btn-primary" />
                     </form>
-                @*<a asp-action="ExportPdf" asp-controller="Account" class="btn btn-primary">
+                <a asp-action="ExportPdf" asp-controller="Account" class="btn btn-primary">
                     Export to Pdf
-                </a>*@
-            </div>
+                </a>
+            </div>*@
             @* <a href="/home/get">Open PDF</a>
             <a href="/home/get" download>Download PDF</a>
             <a asp-action="GetPdf" asp-controller="Account">Download</a>*@
