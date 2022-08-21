@@ -29,6 +29,9 @@
                     <li class="nav-item">
                             <a class="nav-link px-0" asp-area="" asp-controller="ListRooms" asp-action="Index">Danh sách phòng</a>
                     </li>
+                    @*<li class="nav-item">
+                            <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index2">Danh sách phòng1</a>
+                    </li>*@
                     
                     @*<li class="nav-item">
                             <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index5">DDD2</a>
@@ -49,8 +52,14 @@
                             Danh sách Sinh Viên
                         </h2>
                     </div>
-                    <div class="col-6 text-end">
+                    @*<div class="col-6 text-end">
                         <a asp-action="Create" class="btn btn-primary">
+                         <i class="bi bi-plus-circle-fill"></i>  Tạo mới
+                        </a>
+
+                    </div>*@
+                    <div class="col-6 text-end">
+                        <a asp-action="Create1" class="btn btn-primary">
                          <i class="bi bi-plus-circle-fill"></i>  Tạo mới
                         </a>
 
@@ -137,12 +146,20 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Email)
                             </td>
-                            <td>
+                            @*<td>
                                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">
                                 <i class="bi bi-pencil-square"></i></a>                            
+                            </td> *@
+                            <td>
+                                <a asp-action="Edit1" asp-route-id="@item.Id" class="btn btn-primary">
+                                <i class="bi bi-pencil-square"></i></a>                            
                             </td>
-                            <td>                            
+                            @*<td>                            
                                 <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-primary"> 
+                                    <i class="bi bi-info-circle-fill"></i></a>                             
+                            </td>*@
+                            <td>                            
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary"> 
                                     <i class="bi bi-info-circle-fill"></i></a>                             
                             </td>                            
                             <td>                           

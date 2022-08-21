@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using KTX.ViewModels;
 namespace KTX.Models
 
 
@@ -74,6 +75,7 @@ namespace KTX.Models
         public DbSet<Manager> Managers { get; set; } = null!;
         public DbSet<SignInModel> SignInModels  { get; set; } = null!;
         public DbSet<ChangePasswordModel> ChangePasswordModels  { get; set; } = null!;
+        public DbSet<KTX.ViewModels.UserViewModel>? UserViewModel { get; set; }
         //public DbSet<Pager> Pagers { get; set; } = null!;
     }
 }

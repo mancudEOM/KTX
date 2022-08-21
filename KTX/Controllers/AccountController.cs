@@ -4,44 +4,25 @@ using KTX.Models;
 //using Microsoft.AspNetCore.Mvc.Rendering;
 //using System.IO;
 using System.Data;
-//using System.Linq;
-//using ClosedXML.Excel;
-//using System;
-//using System.Collections.Generic;
+
 using System.Drawing;
-//using System.IO;
-//using System.Linq;
-//using Microsoft.AspNetCore.Http;
-//using Microsoft.AspNetCore.Mvc;
+
 using OfficeOpenXml;
-//using SampleExcel.Models
-//using IronPdf;
-//using iTextSharp.text;
-//using iTextSharp.text.pdf;
-//using iTextSharp.tool.xml;
-//using iTextSharp.text.html.simpleparser;
-////using System.Web;
-//using System.Web.Mvc;
-//using System.Web.UI;
-//using System.Web.UI.WebControls;
-
-
-
-
-
-
+using KTX.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 
 namespace KTX.Controllers;
 
 public class AccountController : Controller
 {
-    
+    private readonly IWebHostEnvironment webHostEnvironment;
+
     private readonly KtxDbContext db;
-    public AccountController( KtxDbContext context )
+    public AccountController( KtxDbContext context, IWebHostEnvironment webHostEnvironment)
     {
 
         db = context;
-       
+        this.webHostEnvironment = webHostEnvironment;
     }
 
     public async Task<IActionResult> Index(string sortOrder,
@@ -125,9 +106,64 @@ public class AccountController : Controller
         db.Users.Add(model);
         db.SaveChanges();
         ViewBag.Message = "Data Insert Successfully";
+        
         //return View();
         return RedirectToAction("index");
+
     }
+    [HttpGet]
+
+    public IActionResult Index2()
+
+    {
+
+        return View();
+
+    }
+    [HttpPost]
+
+    public IActionResult Index2(IFormFile formFile)
+
+    {
+
+        try
+
+        {
+
+
+
+            Guid guid = Guid.NewGuid();
+
+            string newfileName = guid.ToString();
+
+            string fileextention = Path.GetExtension(formFile.FileName);
+
+            string fileName = newfileName + fileextention;
+
+            string uploadpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", fileName);
+
+            var stream = new FileStream(uploadpath, FileMode.Create);
+
+            formFile.CopyToAsync(stream);
+
+            ViewBag.Message = "File uploaded successfully.";
+
+        }
+
+        catch
+
+        {
+
+            ViewBag.Message = "Error while uploading the files.";
+
+        }
+
+        return View();
+
+    }
+
+
+
     [HttpGet]
     public IActionResult Edit(int id)
     {
@@ -156,15 +192,165 @@ public class AccountController : Controller
     public IActionResult Detail(int id)
     {
         var data = db.Users.Where(x => x.Id == id).Include(x => x.RelativeUsers).FirstOrDefault();
+        
         return View(data);
     }
     public IActionResult DetailRent(int id)
     {
+        
         var data = db.HistoryRents.Where(x => x.UserId == id).Include(y => y.Rents).FirstOrDefault();
+        
         return View(data);
     }
 
+    public async Task<IActionResult> Details(int? id)
+    {
+        
+        {
 
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            //var user = await db.Users
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+            var user = await db.Users.Where(x => x.Id == id).Include(x => x.RelativeUsers).FirstOrDefaultAsync();
+
+            var userViewModel = new UserViewModel()
+            {
+                Id = user.Id,
+                Fullname = user.Fullname,
+                BirthDay = user.BirthDay,
+                Address = user.Address,
+                Gender = user.Gender,
+                TelephoneNumber = user.TelephoneNumber,
+                Email = user.Email,
+                ExistingImage = user.ImageUrl
+            };
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return View(user);
+        }
+    }
+    public IActionResult Create1()
+    {
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> Create1(UserViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            string uniqueFileName = ProcessUploadedFile(model);
+            User user = new()
+            {
+                IdentityId=model.IdentityId,
+                Fullname = model.Fullname,
+                BirthDay = model.BirthDay,
+                Address = model.Address,
+                Gender = model.Gender,
+                TelephoneNumber = model.TelephoneNumber,
+                Email = model.Email,                
+                ImageUrl = uniqueFileName
+            };
+
+            db.Users.Add(user);
+            await db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        return View(model);
+    }
+    public async Task<IActionResult> Edit1(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var user = await db.Users.FindAsync(id);
+        var speakerViewModel = new UserViewModel()
+        {
+            IdentityId = user.IdentityId,
+            Fullname = user.Fullname,
+            BirthDay = user.BirthDay,
+            Address = user.Address,
+            Gender = user.Gender,
+            TelephoneNumber = user.TelephoneNumber,
+            Email = user.Email,
+            ExistingImage = user.ImageUrl
+        };
+
+        if (user == null)
+        {
+            return NotFound();
+        }
+        return View(speakerViewModel);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit1(int id, UserViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            var user = await db.Users.FindAsync(model.Id);
+            user.IdentityId = model.IdentityId;
+            user.Fullname = model.Fullname;
+            user.BirthDay = model.BirthDay;
+            user.Address = model.Address;
+            user.Gender = model.Gender;
+            user.Email = model.Email;
+
+            if (model.ImageUrl != null)
+            {
+                if (model.ExistingImage != null)
+                {
+                    string filePath = Path.Combine(webHostEnvironment.WebRootPath, "Uploads", model.ExistingImage);
+                    System.IO.File.Delete(filePath);
+                }
+
+                user.ImageUrl = ProcessUploadedFile(model);
+            }
+            db.Update(user);
+            await db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        return View();
+    }
+
+
+    private bool SpeakerExists(int id)
+    {
+        return db.Users.Any(e => e.Id == id);
+    }
+
+    private string ProcessUploadedFile(UserViewModel model)
+    {
+        string uniqueFileName = null;
+        string path = Path.Combine(webHostEnvironment.WebRootPath, "Uploads");
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+
+        if (model.ImageUrl != null)
+        {
+            string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "Uploads");
+            uniqueFileName = Guid.NewGuid().ToString() + "_" + model.ImageUrl.FileName;
+            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                model.ImageUrl.CopyTo(fileStream);
+            }
+        }
+
+        return uniqueFileName;
+    }
     public IActionResult Delete(int id)
     {
         var data = db.Users.Where(x => x.Id == id).FirstOrDefault();
@@ -175,34 +361,6 @@ public class AccountController : Controller
     }
    
 
-    //public IActionResult Registration()
-    //{
-    //    return View();
-    //}
-    //[HttpPost]
-    //public IActionResult Registration(Admin obj)
-    //{
-    //    try
-    //    {
-    //        if (ModelState.IsValid)
-    //        {
-    //            db.Admins.Add(obj);
-    //            db.SaveChanges();
-    //            ViewBag.success = "Sign Up successfully.";
-    //            return View();
-    //        }
-    //        else
-    //        {
-    //            ViewBag.error = "!!There is some error.";
-    //        }
-    //        db.SaveChanges();
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        ViewBag.error = "!!There is some error.";
-    //    }
-    //    return View();
-    //}
 
 
     public IActionResult ExportToExcel()
@@ -245,8 +403,9 @@ public class AccountController : Controller
             worksheet.Cells["D4"].Value = "Ngày sinh";
             worksheet.Cells["E4"].Value = "Địa chỉ";
             worksheet.Cells["F4"].Value = "Điện thoại";
-            worksheet.Cells["A4:F4"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-            worksheet.Cells["A4:F4"].Style.Fill.BackgroundColor.SetColor(Color.Yellow);
+            worksheet.Cells["G4"].Value = "Link Ảnh";
+            worksheet.Cells["A4:G4"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+            worksheet.Cells["A4:G4"].Style.Fill.BackgroundColor.SetColor(Color.Yellow);
 
             row = 5;
             foreach (var user in users)
@@ -257,6 +416,7 @@ public class AccountController : Controller
                 worksheet.Cells[row, 4].Value = user.BirthDay;
                 worksheet.Cells[row, 5].Value = user.Address;
                 worksheet.Cells[row, 6].Value = user.TelephoneNumber;
+                worksheet.Cells[row, 7].Value = user.ImageUrl;
 
                 row++; // row = row + 1;
             }
