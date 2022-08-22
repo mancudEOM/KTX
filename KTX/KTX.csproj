@@ -41,7 +41,6 @@
   <ItemGroup>
     <Folder Include="Uploads\hinhanh\" />
     <Folder Include="wwwroot\file\" />
-    <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\Uploads\" />
   </ItemGroup>
 

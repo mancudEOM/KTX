@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    int i = 0;
 }
 @{
     Layout="_Layout1";
@@ -15,23 +16,21 @@
                     <span class="fs-5 d-none d-sm-inline">Menu</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    @*<li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0">
-                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
-                        </a>
-                    </li>                                       
-                    <li>
-                        <a href="ListUsers" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
-                    </li>*@
+                    
                     <li class="nav-item">
-                            <a class="nav-link px-0 " asp-area="" asp-controller="Account" asp-action="Index">Danh sách sinh viên</a>
+                            <a class="nav-link px-0 " asp-area="" asp-controller="Account" asp-action="Index">
+                                <i class="bi bi-people-fill"></i>
+                                Danh sách sinh viên</a>
                     </li>                        
                     <li class="nav-item">
-                            <a class="nav-link px-0" asp-area="" asp-controller="Post" asp-action="Index">Danh sách bài đăng</a>
+                            <a class="nav-link px-0" asp-area="" asp-controller="Post" asp-action="Index">
+                                <i class="bi bi-signpost"></i>
+                                Danh sách bài đăng</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link px-0" asp-area="" asp-controller="ListRooms" asp-action="Index">Danh sách phòng</a>
+                            <a class="nav-link px-0" asp-area="" asp-controller="ListRooms" asp-action="Index">
+                                <i class="bi bi-house"></i>
+                                Danh sách phòng</a>
                     </li>
                 </ul>
                
@@ -54,9 +53,12 @@
                 </div>    
             </div>
             
-            <table class="table">
+            <table class="table table-striped table-bordered border-primary">
                 <thead>
                     <tr>
+                        <th>
+                            #
+                        </th>
                         <th>
                             @Html.DisplayNameFor(model => model.DatePost)
                         </th>
@@ -74,12 +76,16 @@
                         </th>
                         <th>
                            Del
-                        <th></th>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
             @foreach (var item in Model) {
+                i++;
                     <tr>
+                        <td>
+                            @(i)
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.DatePost)
                         </td>

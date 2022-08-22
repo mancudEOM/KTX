@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    int o = 0;
 }
 @{
     Layout="_Layout1";
@@ -18,27 +19,25 @@
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     
                     <li class="nav-item">
-                            <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index">Danh sách sinh viên</a>
+                            <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index"> <i class="bi bi-people-fill"></i>
+                                Danh sách sinh viên
+
+                            </a>
                     </li>
                     @*<li class="nav-item">
                             <a class="nav-link px-0 " asp-area="" asp-controller="ListUsers" asp-action="Index">Danh sách sinh viên</a>
                     </li>  *@                      
                     <li class="nav-item">
-                            <a class="nav-link px-0" asp-area="" asp-controller="Post" asp-action="Index">Danh sách bài đăng</a>
+                            <a class="nav-link px-0" asp-area="" asp-controller="Post" asp-action="Index">
+                                <i class="bi bi-signpost"></i>
+                                Danh sách bài đăng</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link px-0" asp-area="" asp-controller="ListRooms" asp-action="Index">Danh sách phòng</a>
+                            <a class="nav-link px-0" asp-area="" asp-controller="ListRooms" asp-action="Index">
+                                <i class="bi bi-house"></i>
+                                Danh sách phòng</a>
                     </li>
-                    @*<li class="nav-item">
-                            <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index2">Danh sách phòng1</a>
-                    </li>*@
                     
-                    @*<li class="nav-item">
-                            <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index5">DDD2</a>
-                    </li>
-                    <li class="nav-item">
-                            <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index1">E</a>
-                    </li>*@
                     
                 </ul>
                
@@ -52,12 +51,7 @@
                             Danh sách Sinh Viên
                         </h2>
                     </div>
-                    @*<div class="col-6 text-end">
-                        <a asp-action="Create" class="btn btn-primary">
-                         <i class="bi bi-plus-circle-fill"></i>  Tạo mới
-                        </a>
-
-                    </div>*@
+                   
                     <div class="col-6 text-end">
                         <a asp-action="Create1" class="btn btn-primary">
                          <i class="bi bi-plus-circle-fill"></i>  Tạo mới
@@ -71,7 +65,7 @@
             <div class ="container p-2">
                 <form asp-action="Index" method="get">
                     <div class="form-actions no-color">
-                        <p>
+                        <p  class="text-primary" >
                             CMND/Tên : <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
                             <input type="submit" value="Tìm kiếm" class="btn btn-primary" /> |
                             <a asp-action="Index" class="btn btn-primary">Trở về mặc định</a>
@@ -80,9 +74,13 @@
                 </form>
             </div>
             <div class ="container p-2">
-                <table class="table">
+                <table class="table table-striped table-bordered border-primary">
                     <thead>
+
                         <tr>
+                            <th>
+                            #
+                            </th>
                             <th>
                                <a asp-action="Index" asp-route-sortOrder="@ViewData["IdenSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">CMND</a>
                             </th>
@@ -116,12 +114,17 @@
                             <th>
                                Xóa
                             </th>
-                            <th></th>
+                            
                         </tr>
                     </thead>
                     <tbody>
                 @foreach (var item in Model) {
-                        <tr>
+                            o++;
+                            <tr>
+                            
+                            <td>
+                                @(o)
+                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.IdentityId)
                             </td>
@@ -181,42 +184,26 @@
                asp-route-pageNumber="@(Model.PageIndex - 1)"
                asp-route-currentFilter="@ViewData["CurrentFilter"]"
                class="btn btn-default @prevDisabled">
-                Previous
+                Trang trước
             </a>
             <a asp-action="Index"
                asp-route-sortOrder="@ViewData["CurrentSort"]"
                asp-route-pageNumber="@(Model.PageIndex + 1)"
                asp-route-currentFilter="@ViewData["CurrentFilter"]"
                class="btn btn-default @nextDisabled">
-                Next
+                Trang tiếp theo
             </a>
             <div class="container p-2">
                 <a asp-action="ExportToExcel" asp-controller="Account" class="btn btn-primary">
-                    Export to Excel
+                    Tải file Excel
                 </a>
              </div>
              <div class="container p-2">
                 <a asp-action="BatchUserUpload" asp-controller="Account" class="btn btn-primary">
-                    Import from Excel
+                    Nhập file Excel
                 </a>
             </div>
-            @*<div class="container p-2">
-                <a asp-action="Export" asp-controller="Account" class="btn btn-primary">
-                    E
-                </a>
-            </div>*@
-            @*<div class="container p-2">
-                    <form method="post" asp-controller="Account" asp-action="ExportExcel">
-                        <input type="hidden" name="ExportData" id="ExportData" />  
-                        <input type="submit" id="btnSubmit" value="Export" class="btn btn-primary" />
-                    </form>
-                <a asp-action="ExportPdf" asp-controller="Account" class="btn btn-primary">
-                    Export to Pdf
-                </a>
-            </div>*@
-            @* <a href="/home/get">Open PDF</a>
-            <a href="/home/get" download>Download PDF</a>
-            <a asp-action="GetPdf" asp-controller="Account">Download</a>*@
+            
         </div>
     </div>
 </div>

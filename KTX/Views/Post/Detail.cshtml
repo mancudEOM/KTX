@@ -18,9 +18,7 @@
                     <li class="nav-item">
                             <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index">Danh sách sinh viên</a>
                     </li>
-                    @*<li class="nav-item">
-                            <a class="nav-link px-0 " asp-area="" asp-controller="ListUsers" asp-action="Index">Danh sách sinh viên</a>
-                    </li>  *@                      
+                                        
                     <li class="nav-item">
                             <a class="nav-link px-0" asp-area="" asp-controller="Post" asp-action="Index">Danh sách bài đăng</a>
                     </li>
@@ -28,9 +26,7 @@
                             <a class="nav-link px-0" asp-area="" asp-controller="ListRooms" asp-action="Index">Danh sách phòng</a>
                     </li>
                     
-                    @*<li class="nav-item">
-                            <a class="nav-link px-0" asp-area="" asp-controller="Account" asp-action="Index4">DDD2</a>
-                    </li>*@
+                    
                     
                 </ul>
                
@@ -38,26 +34,26 @@
         </div>
         <div class="col py-3"> 
 
-            <h1>Detail</h1>
+           
 
             <div>
-                <h4>Post</h4>
+                <h4 class="text-primary"> Chi tiết bài đăng</h4>
                 <hr />
                 <dl class="row">
-                    <dt class = "col-sm-2">
-                        @Html.DisplayNameFor(model => model.DatePost)
+                    <dt class = "col-sm-2 text-primary">
+                        Thời gian đăng
                     </dt>
                     <dd class = "col-sm-10">
                         @Html.DisplayFor(model => model.DatePost)
                     </dd>
-                    <dt class = "col-sm-2">
-                        @Html.DisplayNameFor(model => model.Title)
+                    <dt class = "col-sm-2 text-primary">
+                        Tiêu đề
                     </dt>
                     <dd class = "col-sm-10">
                         @Html.DisplayFor(model => model.Title)
                     </dd>
-                    <dt class = "col-sm-2">
-                        @Html.DisplayNameFor(model => model.Content)
+                    <dt class = "col-sm-2 text-primary">
+                        Nội dung
                     </dt>
                     <dd class = "col-sm-10">
                         @Html.DisplayFor(model => model.Content)
@@ -65,8 +61,10 @@
                 </dl>
             </div>
             <div>
-                <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-                <a asp-action="Index">Trở về</a>
+               @* <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+                <a asp-action="Index">Trở về</a>*@
+                <a asp-action="Index" class="btn btn-primary " role="button">Trở về</a>
+                <a  asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary " role="button">Chỉnh sửa</a>
             </div>
         </div>
     </div>
